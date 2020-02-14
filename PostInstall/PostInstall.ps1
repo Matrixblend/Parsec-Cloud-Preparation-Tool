@@ -345,7 +345,7 @@ Write-Output "The Audio Diver has been installed"
 
 #Creates shortcut for the GPU Updater tool
 function gpu-update-shortcut {
-(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/jamesstringerparsec/Cloud-GPU-Updater/master/GPU%20Updater%20Tool.ps1", "$ENV:Appdata\ParsecLoader\GPU Updater Tool.ps1")
+(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/steventhegeek/Cloud-GPU-Updater/master/GPU%20Updater%20Tool.ps1", "$ENV:Appdata\ParsecLoader\GPU Updater Tool.ps1")
 Unblock-File -Path "$ENV:Appdata\ParsecLoader\GPU Updater Tool.ps1"
 Write-Output "GPU-Update-Shortcut"
 $Shell = New-Object -ComObject ("WScript.Shell")
