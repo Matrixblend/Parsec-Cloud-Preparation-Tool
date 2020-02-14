@@ -324,10 +324,10 @@ $regex = '(?<=<SilentMode>)[^<]*'
 #AWS Specific tweaks
 function aws-setup {
 #clean-aws
-Write-Output "Installing VNC, and installing audio driver"
-(New-Object System.Net.WebClient).DownloadFile($(((Invoke-WebRequest -Uri https://www.tightvnc.com/download.php -UseBasicParsing).Links.OuterHTML -like "*Installer for Windows (64-bit)*").split('"')[1].split('"')[0]), "C:\ParsecTemp\Apps\tightvnc.msi")
+Write-Output "Installing audio driver"
+#(New-Object System.Net.WebClient).DownloadFile($(((Invoke-WebRequest -Uri https://www.tightvnc.com/download.php -UseBasicParsing).Links.OuterHTML -like "*Installer for Windows (64-bit)*").split('"')[1].split('"')[0]), "C:\ParsecTemp\Apps\tightvnc.msi")
 (New-Object System.Net.WebClient).DownloadFile("http://rzr.to/surround-pc-download", "C:\ParsecTemp\Apps\razer-surround-driver.exe")
-start-process msiexec.exe -ArgumentList '/i C:\ParsecTemp\Apps\TightVNC.msi /quiet /norestart ADDLOCAL=Server SET_USECONTROLAUTHENTICATION=1 VALUE_OF_USECONTROLAUTHENTICATION=1 SET_CONTROLPASSWORD=1 VALUE_OF_CONTROLPASSWORD=4ubg9sde SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=4ubg9sde' -Wait
+#start-process msiexec.exe -ArgumentList '/i C:\ParsecTemp\Apps\TightVNC.msi /quiet /norestart ADDLOCAL=Server SET_USECONTROLAUTHENTICATION=1 VALUE_OF_USECONTROLAUTHENTICATION=1 SET_CONTROLPASSWORD=1 VALUE_OF_CONTROLPASSWORD=4ubg9sde SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=4ubg9sde' -Wait
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value $env:USERNAME | Out-Null
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name DefaultUserName -Value "" | Out-Null
 if((Test-RegistryValue -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Value AutoAdminLogin)-eq $true){Set-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogin -Value 1 | Out-Null} Else {New-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name AutoAdminLogin -Value 1 | Out-Null}
@@ -340,7 +340,7 @@ Write-Output "The Audio Driver, Razer Surround is now installing"
 Start-Process RzUpdateManager.exe
 Set-Location $OriginalLocation
 Set-Service -Name audiosrv -StartupType Automatic
-Write-Output "VNC has been installed on this computer using Port 5900 and Password 4ubg9sde"
+Write-Output "The Audio Diver has been installed"
 }
 
 #Creates shortcut for the GPU Updater tool
@@ -599,7 +599,7 @@ show-hidden-items
 show-file-extensions
 enhance-pointer-precision
 enable-mousekeys
-set-time
+#set-time
 set-wallpaper
 Create-ClearProxy-Shortcut
 Create-AutoShutdown-Shortcut
@@ -619,7 +619,7 @@ Write-Host "PARSEC WILL NOT BE VISIBLE IF YOU'RE CONNECTED VIA RDP" -ForegroundC
 Write-Host  "USE ParsecServiceManager.exe (ON DESKTOP) IN ORDER TO SIGN IN" -ForegroundColor RED
 Write-Host "THINGS YOU NEED TO DO" -ForegroundColor RED
 Write-Host "1. Open Parsec and sign in (use ParsecServiceManager.exe if connected via RDP)" -ForegroundColor RED
-Write-Host "2. Open Setup Auto Logon on the Desktop and follow the instructions (in the text file on the Desktop)" -ForegroundColor RED
+Write-Host "2. Run NetPLWiz and set user to autologin" -ForegroundColor RED
 Write-Host "3. Run GPU Updater Tool" -ForegroundColor RED
 Write-Host "4. If your computer doesn't reboot automatically, restart it from the Start Menu after GPU Updater Tool is finished" -ForegroundColor RED
 pause
