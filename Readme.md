@@ -47,14 +47,15 @@ Powershell.exe -File $ENV:UserProfile\Downloads\Parsec-Cloud-Preparation-Tool\Pa
 This tool supports:
 
 ### OS:
+Windows 10 (You must have run IExplore and accepted terms before running this)
 Server 2016  
 Server 2019
                     
 ### CLOUD SKU:
 AWS G3.4xLarge    (Tesla M60)  
-AWS G2.2xLarge    (GRID K520)  
+AWS G2.2xLarge    (GRID K520)
 AWS G4dn.xLarge   (Tesla T4 with vGaming driver)
-Azure NV6         (Tesla M60)  
+Azure NV6         (Tesla M60)
 Paperspace P4000  (Quadro P4000)  
 Paperspace P5000  (Quadro P5000)  
 Google P100 VW    (Tesla P100 with Virtual Workstation Driver)  
